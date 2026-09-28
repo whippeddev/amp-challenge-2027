@@ -38,6 +38,8 @@ def main():
         print("Project files and system tools are present. Model downloads/inference not tested.")
         print(json.dumps(options, indent=2))
         return
+    # The CLI runs without a notebook display, including when launched from Colab.
+    os.environ["MPLBACKEND"] = "Agg"
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     runpy.run_path(str(Path(__file__).with_name("pipeline.py")), init_globals={"RUN_OPTIONS": options})
     source = Path(options["work_dir"]) / "final_files"
