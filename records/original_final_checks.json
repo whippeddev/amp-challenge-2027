@@ -1,0 +1,32 @@
+{
+  "mode": "full",
+  "library_count": 50000,
+  "top_count": 100,
+  "unique_library": true,
+  "top_is_in_library": true,
+  "library_selection": "Top 50,000 by Cheap potency score after complete APEX + Deep-AMP screening; Sequence ascending resolves exact ties.",
+  "reference_identity_limit": 0.8,
+  "internal_top_identity_limit": 0.8,
+  "chemistry": "linear peptides, free termini; no terminal modifications specified",
+  "official_repository_validator_run": false,
+  "status": "Sequence files ready; repository submission checks remain",
+  "run_mode": "full",
+  "elite_count": 2000,
+  "tsAMP_challenge_strains": 11,
+  "llamp_fallback_strains": 9,
+  "llamp_fallback_species": 6,
+  "elite_ranking": {
+    "version": 2,
+    "activity_cutoff_uM": 16.0,
+    "pass_rule": "MIC <= cutoff",
+    "primary": "Predicted passes /20 (descending)",
+    "tie_breaker": "tsAMP-CS passes /11 (descending)",
+    "second_tie_breaker": "Mean predicted log10 MIC across all 20 targets (ascending)",
+    "exact_ties": "Sequence (ascending; reproducible order only)",
+    "final_models": [
+      "tsAMP-CS",
+      "LLAMP"
+    ],
+    "interpretation": "Predicted pass count, not a calibrated expected experimental score"
+  }
+}

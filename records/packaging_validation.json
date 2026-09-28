@@ -1,0 +1,38 @@
+{
+  "python_files_parse": true,
+  "package_build_and_editable_install_no_dependencies": "passed",
+  "entry_point_help": "passed",
+  "uv_entry_point_preflight_no_sync": "passed; isolated Python 3.13.15 test environment",
+  "official_sequence_functions": "passed on completed-run reference FASTA files",
+  "official_validator_git_blob": "4f54af9fe92962be54cb2c31ada92ed6dac0e216",
+  "full_dependency_install": false,
+  "full_model_inference_with_packaged_code": false,
+  "official_repository_validator_end_to_end": false,
+  "github_published": false,
+  "direct_computational_stage_ast_comparison": "unchanged for notebook cells 5, 8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 30; LLAMP changes only resolve its pinned model snapshot",
+  "locked_environments": {
+    "main": {
+      "package_count": 94,
+      "recorded_versions_matched": 93,
+      "uv_lock_check": "passed",
+      "python": "3.13.15"
+    },
+    "deepamp": {
+      "package_count": 47,
+      "recorded_versions_matched": 46,
+      "uv_lock_check": "passed",
+      "python": "3.10.21"
+    },
+    "hemopi2": {
+      "package_count": 36,
+      "recorded_versions_matched": 35,
+      "uv_lock_check": "passed",
+      "python": "3.11.16"
+    }
+  },
+  "reference_output_sha256": {
+    "library.fasta": "075d73ee2ba6e8cb05896d90a70a6b4b5b1bda4ad1327f722cc6815c293dbe6d",
+    "top.fasta": "340a83b31a9b050565f4bcd3caec1664559f010f08de59ea540a7e0d96f5b8c1"
+  },
+  "reference_data_sha256": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9"
+}

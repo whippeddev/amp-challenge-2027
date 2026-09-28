@@ -1,0 +1,29 @@
+{
+  "raw_generated": 200000,
+  "filtered_unique": 109504,
+  "settings": {
+    "version": 1,
+    "seed": 42,
+    "mode": "full",
+    "raw_limit": 200000,
+    "chunk_size": 5000,
+    "batch_size": 256,
+    "target_filtered": null,
+    "length": [
+      8,
+      35
+    ],
+    "instability_max": 40.0,
+    "charge": [
+      2.0,
+      10.0
+    ],
+    "eisenberg": [
+      -0.5,
+      0.8
+    ],
+    "checkpoint": "8c5607765cbb448c7e7ccdd40ef6afb7f6d87781f571ffa8868eba651d532f43",
+    "reference": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9",
+    "training_data": "e1595f002d386e0308d93111e811b7da1747caf511fdc449172ddc7fbc4316fd"
+  }
+}

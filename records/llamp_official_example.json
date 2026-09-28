@@ -1,0 +1,12 @@
+{
+  "sequence": "SSSSSSAAAAARRRRRRRGGGGGGGG",
+  "species": "Escherichia coli",
+  "authors_log10_mic": 1.8840848207473755,
+  "reproduced_log10_mic": 1.8837999105453491,
+  "reproduced_mic_uM": 76.52439601916059,
+  "absolute_log10_difference": 0.0002849102020263672,
+  "tolerance": 0.001,
+  "pass": true,
+  "transformers_version": "5.16.1",
+  "hf_model_commit": "16b0dddc26541a33740a1bf084a7030b373622d5"
+}

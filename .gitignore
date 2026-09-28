@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.amp-work/
+.amp-tools/
+generate/
+submission/
+dist/
+*.egg-info/

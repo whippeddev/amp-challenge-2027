@@ -1,0 +1,68 @@
+{
+  "generator": "PLUM",
+  "PLUM_commit": "650fdae718f8e761deb2c96ff428766854d050a3",
+  "APEX_commit": "10a355a4220e6f8f432d62b267317b5b8b337dc8",
+  "DeepAMP_commit": "0a31ad796732b5e5874c3f92e771057e887f58a9",
+  "tsAMP_commit": "82c722090b10878edb0b9f45033e1806a659f2b7",
+  "LLAMP_commit": "bb48daaa94b947edac46e498dec741911cf98edc",
+  "LLAMP_weight_source": "https://drive.google.com/file/d/1hmfL7uRZsHo4pn0o0nqaqPcntxGJIhE7/view?usp=sharing",
+  "LLAMP_weight_sha256": "be331f32d8df620a955dfd86647cedd81f91fd315e5a8cefbc1cdd66c43f7f6e",
+  "LLAMP_peptide_model": "Daehun/peptide_tuned_ESM-2",
+  "seed": 42,
+  "run_mode": "full",
+  "raw_generation_ceiling": 200000,
+  "target_basic_filtered_pool": null,
+  "library_target": 50000,
+  "elite_target": 2000,
+  "filters": {
+    "length_generated": [
+      8,
+      35
+    ],
+    "canonical_only": true,
+    "unique": true,
+    "exclude_exact_training_and_reference": true,
+    "instability_max": 40,
+    "charge_pH7": [
+      2,
+      10
+    ],
+    "Eisenberg_hydrophobicity": [
+      -0.5,
+      0.8
+    ]
+  },
+  "cheap_potency": "Equal average: mean APEX per-strain percentile, Deep-AMP CNN Gram-negative percentile, Deep-AMP CNN Gram-positive percentile; lower is better",
+  "library_selection": "From all basic-filter survivors, retain the top 50,000 by Cheap potency score (mean APEX/Deep-AMP percentile; lower is better), with Sequence as deterministic tie-break. HemoPI2/strong models then operate only within this 50,000-member pool.",
+  "hemolysis": "HemoPI2 1.3 model 3, threshold 0.58; elite shortlist only",
+  "tsAMP_CS": "Released ESM-1v peptide embeddings plus released strain embeddings. Checkpoint-compatible 2560->128->64->1 architecture with ReLU after fc1/fc3.",
+  "tsAMP_CS_reconstruction_caveat": "The tsAMP-CS forward pass is a reconstruction inferred from the released checkpoint tensor shapes. Layer sizes are recoverable from the checkpoint; activation functions, dropout placement and any output transform are not. If the original model differs in those respects, the weights still load cleanly and the predictions are silently wrong.",
+  "LLAMP": "Frozen released species-level model for the 9 challenge targets outside the 11-strain tsAMP-CS deployment set. Output is log10 MIC in uM, converted with 10**x. Official authors' example must reproduce within 0.001 log10 units before use.",
+  "LLAMP_external_validation": "46-peptide AMP-Diffusion wet-lab benchmark: absolute MIC calibration was poor and ranking performance was species-dependent. Pseudomonas was strongest; E. coli was mainly a coarse strong-vs-weak signal; Klebsiella and E. faecium were weak. Salmonella enterica and Enterobacter cloacae were not externally validated there.",
+  "elite_ranking": {
+    "version": 2,
+    "activity_cutoff_uM": 16.0,
+    "pass_rule": "MIC <= cutoff",
+    "primary": "Predicted passes /20 (descending)",
+    "tie_breaker": "tsAMP-CS passes /11 (descending)",
+    "second_tie_breaker": "Mean predicted log10 MIC across all 20 targets (ascending)",
+    "exact_ties": "Sequence (ascending; reproducible order only)",
+    "final_models": [
+      "tsAMP-CS",
+      "LLAMP"
+    ],
+    "interpretation": "Predicted pass count, not a calibrated expected experimental score"
+  },
+  "top100": "Descending predicted passes /20, then descending tsAMP-CS passes /11, then ascending mean predicted log10 MIC across all 20 targets; sequence order resolves exact ties. Subject to reference and internal identity <=0.80. APEX/Deep-AMP affect upstream shortlisting only, not final elite ordering.",
+  "elite_actual": 2000,
+  "top_actual": 100,
+  "reference_commit": "5c8a5d8e2551c8cf572d3d3bfcfe7633b109d91e",
+  "chemistry": "Linear, free termini; no modifications requested",
+  "manual_intervention": "No manual sequence editing or selection",
+  "reference_sha256": "cbbeac64ba95746d87961e8ad9dd0849ae8058d15a300b2e7f6990730ca521e9",
+  "python": "3.13.15",
+  "numpy": "2.1.3",
+  "torch": "2.11.0+cu128",
+  "hardware": "Tesla T4",
+  "limitations": "All potency and safety values are model predictions. tsAMP-CS is used only for 11 exact challenge strains. LLAMP is species-level and therefore cannot distinguish multiple challenge strains within the same species; its external wet-lab benchmark also showed weak absolute MIC calibration and uneven ranking performance. LLAMP is also species-level, so the three E. coli and two Salmonella challenge strains that fall back to it receive identical predictions; those species therefore carry more weight in the passes /20 count than a strain-specific model would give them. Each major inference stage is checkpointed to the Drive run folder so interrupted Colab sessions can resume; the official repository submission validator remains a separate packaging step."
+}

@@ -1,0 +1,132 @@
+[project]
+name = "amp-submission"
+version = "0.1.0"
+description = "PLUM generation and multi-stage selection for AMP Challenge 2027"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "numpy==2.1.3",
+  "pandas==2.2.3",
+  "torch==2.11.0+cu128",
+  "biopython==1.88",
+  "levenshtein==0.27.5",
+  "seqme[aa-descriptors]==0.5.1",
+  "scikit-learn==1.5.2",
+  "fair-esm==2.0.0",
+  "gdown==5.2.0",
+  "transformers==5.16.1",
+]
+
+[project.scripts]
+generate = "amp_submission.generate:main"
+check-files = "amp_submission.check_files:main"
+
+[build-system]
+requires = ["uv_build==0.9.18"]
+build-backend = "uv_build"
+
+[tool.uv]
+constraint-dependencies = [
+  "annotated-doc==0.0.5",
+  "anyio==4.14.2",
+  "beautifulsoup4==4.13.5",
+  "biopython==1.88",
+  "certifi==2026.7.22",
+  "cffi==2.1.1",
+  "charset-normalizer==3.4.9",
+  "click==8.5.0",
+  "cloudpickle==3.1.2",
+  "contourpy==1.3.3",
+  "cuda-bindings==12.9.7",
+  "cuda-pathfinder==1.8.0",
+  "cuda-toolkit==12.8.1",
+  "cycler==0.12.1",
+  "fair-esm==2.0.0",
+  "filelock==3.32.5",
+  "fonttools==4.64.0",
+  "fsspec==2025.12.0",
+  "gdown==5.2.0",
+  "h11==0.16.0",
+  "hf-xet==1.6.0",
+  "httpcore==1.0.9",
+  "httpx==0.28.1",
+  "huggingface-hub==1.29.0",
+  "idna==3.19",
+  "jinja2==3.1.6",
+  "joblib==1.6.0",
+  "kiwisolver==1.5.1",
+  "levenshtein==0.27.5",
+  "llvmlite==0.44.0",
+  "lxml==6.1.2",
+  "markdown-it-py==4.2.0",
+  "markupsafe==3.0.3",
+  "matplotlib==3.10.0",
+  "mdurl==0.1.2",
+  "modlamp==4.3.3",
+  "moocore==0.3.2",
+  "mpmath==1.3.0",
+  "networkx==3.6.1",
+  "numba==0.61.2",
+  "numpy==2.1.3",
+  "nvidia-cublas-cu12==12.8.4.1",
+  "nvidia-cuda-cupti-cu12==12.8.90",
+  "nvidia-cuda-nvrtc-cu12==12.8.93",
+  "nvidia-cuda-runtime-cu12==12.8.90",
+  "nvidia-cudnn-cu12==9.19.0.56",
+  "nvidia-cufft-cu12==11.3.3.83",
+  "nvidia-cufile-cu12==1.13.1.3",
+  "nvidia-curand-cu12==10.3.9.90",
+  "nvidia-cusolver-cu12==11.7.3.90",
+  "nvidia-cusparse-cu12==12.5.8.93",
+  "nvidia-cusparselt-cu12==0.7.1",
+  "nvidia-nccl-cu12==2.28.9",
+  "nvidia-nvjitlink-cu12==12.8.93",
+  "nvidia-nvshmem-cu12==3.4.5",
+  "nvidia-nvtx-cu12==12.8.90",
+  "packaging==26.3",
+  "pandas==2.2.3",
+  "pillow==11.3.0",
+  "platformdirs==4.11.7",
+  "polyleven==0.11.0",
+  "pycparser==3.0",
+  "pygments==2.21.0",
+  "pynndescent==0.6.0",
+  "pyparsing==3.3.2",
+  "pysocks==1.7.1",
+  "python-dateutil==2.9.0.post0",
+  "pytz==2025.2",
+  "pyyaml==6.0.3",
+  "rapidfuzz==3.14.6",
+  "regex==2025.11.3",
+  "requests==2.32.4",
+  "rich==13.9.4",
+  "safetensors==0.8.0",
+  "scikit-learn==1.5.2",
+  "scipy==1.16.3",
+  "seqme==0.5.1",
+  "setuptools==80.10.2",
+  "shellingham==1.5.4",
+  "six==1.17.0",
+  "soupsieve==2.9.2",
+  "sympy==1.14.0",
+  "threadpoolctl==3.6.0",
+  "tokenizers==0.23.1",
+  "torch==2.11.0+cu128",
+  "tqdm==4.67.3",
+  "transformers==5.16.1",
+  "triton==3.6.0",
+  "typer==0.27.2",
+  "typing-extensions==4.16.0",
+  "tzdata==2026.3",
+  "umap-learn==0.5.7",
+  "urllib3==2.5.0"
+]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }

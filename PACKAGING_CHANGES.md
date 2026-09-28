@@ -1,0 +1,35 @@
+# Packaging changes
+
+The source is `notebooks/AMP_Library_Selection.ipynb`; its original SHA-256 is
+recorded in `records/notebook_source.json`. `src/amp_submission/pipeline.py`
+contains the same computational stages as a command-line script.
+
+Changes made for packaging:
+
+- Replace Colab Drive mounting and `/content` paths with configurable work/tools
+  directories. Remove automatic browser downloads and backup-ZIP creation.
+- Replace runtime pip installs with three dependency-locked `uv` environments.
+  Require preinstalled git-lfs instead of changing system packages.
+- Replace notebook table display with console output.
+- Copy the bundled, checksum-verified official reference instead of downloading it.
+- Verify PLUM checkpoint, PLUM training-reference, and LLAMP checkpoint hashes
+  against the completed run's recorded values.
+- Pin the LLAMP Hugging Face snapshot to the revision recorded by its successful
+  official-example check. Pass the resolved local snapshot to the same model and
+  tokenizer constructors; retain the published model identifier in provenance.
+- Export generated results to `generate/`. Stored reference FASTA files are used
+  only for comparison and file validation, never as the `generate` output source.
+
+Generation parameters, filter thresholds, model forward passes, scoring weights,
+ranking keys, and similarity thresholds were preserved. The preceding v14 edit
+also corrected stale completion status and scoring descriptions, recorded output
+hashes, and separated historical statements from submitter-confirmed declarations.
+
+Original Colab environments are recorded under `records/original_*_packages.txt`.
+Package locks are generated for the portable environments; a fresh model run is
+still required to establish numerical equivalence after these packaging changes.
+
+The historical source records are not rewritten. In particular,
+`original_method_and_versions.json` contains stale equal-third scoring wording
+and an unverified manual-intervention statement. The executed weighting is
+50%/25%/25%, and no historical declaration is certified by the artifact audit.

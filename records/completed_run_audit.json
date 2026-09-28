@@ -1,0 +1,43 @@
+{
+  "library_count": 50000,
+  "top_count": 100,
+  "raw_generated": 200000,
+  "filtered_unique": 109504,
+  "library_length_range": [
+    8,
+    35
+  ],
+  "library_membership_matches_recomputed_scores": true,
+  "library_order_matches_saved_scores": true,
+  "recomputed_order_difference_from_csv_float_rounding": 291,
+  "max_cheap_score_difference": 2.220446049250313e-16,
+  "hemo_screened": 8500,
+  "predicted_nonhemolytic": 2093,
+  "elite_count": 2000,
+  "max_mean_log_mic_difference_after_csv_roundtrip": 5.284348292278196e-09,
+  "elite_ranking_matches_saved_predictions": true,
+  "top_predicted_pass_counts": {
+    "20": 100
+  },
+  "top_exactly_matches_independent_similarity_selection": true,
+  "top_reference_and_internal_similarity_pass": true,
+  "checkpoint_hash_comparisons": 798,
+  "checkpoint_hash_mismatches": [],
+  "external_source_files_not_in_archive": 30,
+  "export_sha256": {
+    "library.fasta": "075d73ee2ba6e8cb05896d90a70a6b4b5b1bda4ad1327f722cc6815c293dbe6d",
+    "top.fasta": "340a83b31a9b050565f4bcd3caec1664559f010f08de59ea540a7e0d96f5b8c1"
+  },
+  "llamp_official_example": {
+    "sequence": "SSSSSSAAAAARRRRRRRGGGGGGGG",
+    "species": "Escherichia coli",
+    "authors_log10_mic": 1.8840848207473755,
+    "reproduced_log10_mic": 1.8837999105453491,
+    "reproduced_mic_uM": 76.52439601916059,
+    "absolute_log10_difference": 0.0002849102020263672,
+    "tolerance": 0.001,
+    "pass": true,
+    "transformers_version": "5.16.1",
+    "hf_model_commit": "16b0dddc26541a33740a1bf084a7030b373622d5"
+  }
+}
