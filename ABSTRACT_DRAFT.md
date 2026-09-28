@@ -1,18 +1,5 @@
 # Draft abstract
 
-We assembled a computational pipeline for generating and selecting antimicrobial
-peptide candidates using released pretrained models. PLUM generated 200,000
-candidates with a fixed random seed. Canonical-residue, length, uniqueness,
-reference-exclusion, and physicochemical filters retained 109,504 sequences.
-APEX and Deep-AMP percentile scores selected a 50,000-member library. HemoPI2
-screening identified an elite panel of 2,000 candidates predicted to be
-non-hemolytic. tsAMP-CS supplied activity estimates for 11 challenge strains,
-while LLAMP supplied species-level estimates for nine remaining targets.
-Candidates were ranked by predicted activity coverage at MIC ≤16 µM, followed
-by tsAMP-CS coverage and mean predicted log10 MIC. Reference and internal
-similarity constraints produced the final ranked Top 100. All selected
-candidates had predicted coverage of 20/20 targets; this has not been confirmed
-experimentally. Limitations include reconstructed tsAMP-CS inference, imperfect
-MIC calibration, and repeated species-level LLAMP estimates across related
-strain targets. The pipeline uses checkpointed stages and records model
-revisions, software environments, and output fingerprints.
+We developed an automated pipeline for antimicrobial peptide generation and selection using released pretrained models without additional model training. PLUM generated 200,000 candidates using a fixed seed schedule. Sequence-validity, duplicate, reference-exclusion, and physicochemical filters retained 109,504 unique peptides. A weighted combination of APEX and Deep-AMP percentile scores selected a 50,000-member library, with weights of 50% for APEX and 25% each for Deep-AMP Gram-negative and Gram-positive predictions. HemoPI2 screened 8,500 library members; 2,093 were predicted non-hemolytic, and the first 2,000 by library ranking advanced to activity scoring.
+
+tsAMP-CS provided predictions for 11 challenge strains, while LLAMP provided species-level estimates for the remaining nine targets. Candidates were ranked by the number of targets with predicted minimum inhibitory concentration (MIC) ≤16 µM, followed by tsAMP-CS coverage, mean predicted log10 MIC, and alphabetical sequence order. The final 100 candidates were selected with Levenshtein similarity ratios ≤0.80 against both the official antibacterial reference set and one another. All 100 met the predicted activity threshold for all 20 targets. These predictions have not been experimentally validated; LLAMP estimates shared across strains are not independent strain-level predictions. Additional limitations include uncertain MIC calibration and a reconstructed tsAMP-CS inference implementation whose exact equivalence to the authors’ implementation has not been established. An independent audit reproduced library membership and final selection from the completed-run records. The pipeline records model revisions, locked software environments, and stage checkpoints to support reproducibility.
