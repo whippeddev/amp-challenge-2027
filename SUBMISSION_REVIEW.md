@@ -16,13 +16,14 @@ The submitter confirmed that they did not personally hand-pick, edit, delete, or
 reorder individual peptide sequences, or manually add outside sequences. This is
 a submitter declaration, not a conclusion established by the automated audit.
 Choosing models and filter settings was explicitly excluded from this question.
-The response does not establish whether alternative runs or seeds were compared.
+The submitter separately confirmed that the completed run used the planned
+settings rather than choosing the best predictions among alternative full runs
+or random seeds. This does not imply there were no earlier development tests.
 
 ## Unresolved before final declarations
 
 | Item | Current evidence and remaining action |
 |---|---|
-| Run and seed selection | Manual addition of outside sequences was denied in the submitter declaration above. Any sequence-specific seeding or selection among alternative runs/seeds outside the documented workflow remains to be confirmed. |
 | Historical experiments | Earlier records mention AMP-Diffusion, OmegAMP benchmark peptides, and BattleAMP website exploration. Complete the factual history and distinguish experiments from inputs to the final pipeline. |
 | Upstream training data | A final source inventory exists, but complete training-data provenance, availability, overlaps, and any non-public data remain to be reviewed. |
 | Upstream licenses | Project MIT licensing does not establish permission for every upstream codebase, weight file, or dataset. Full review remains open; permissive-release/co-authorship eligibility is not established. |
