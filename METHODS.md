@@ -64,3 +64,14 @@ The software path is automated. Absence of outside manual edits, discarded runs,
 or seed searches requires a factual submitter declaration; the package does not
 automatically certify those historical facts. No model was retrained by the
 packaged generation path.
+
+# Packaged-run verification
+
+On 2026-09-28, commit `6dc67d47e3074838136bad7d168871de4f4e8644`
+completed generation and scoring on a Colab Tesla T4 with no completed stage
+checkpoints at generation startup. Submitter-provided output shows that both
+exported FASTA hashes exactly matched the audited source-run files. Official
+sequence-check functions passed on these newly generated files. The complete
+validator and its same-directory repeat-invocation check were not completed.
+This evidence concerns software execution and exported-file agreement, not
+experimental activity or independent validation of the scoring models.

@@ -26,8 +26,14 @@ also corrected stale completion status and scoring descriptions, recorded output
 hashes, and separated historical statements from submitter-confirmed declarations.
 
 Original Colab environments are recorded under `records/original_*_packages.txt`.
-Package locks are generated for the portable environments; a fresh model run is
-still required to establish numerical equivalence after these packaging changes.
+Package locks are generated for the portable environments. A fresh packaged run
+on 2026-09-28 produced byte-identical library and Top-100 FASTA files compared with
+the audited source run. This establishes agreement for those exports, not every
+intermediate numerical score. See `records/reproduction_validation_2026-09-28.json`.
+
+The CLI now selects the non-interactive Matplotlib Agg backend before loading the
+pipeline. This fixes a Colab-inherited notebook backend error without changing
+sequence generation, model scoring, or selection.
 
 The historical source records are not rewritten. In particular,
 `original_method_and_versions.json` contains stale equal-third scoring wording

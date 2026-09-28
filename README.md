@@ -6,10 +6,17 @@ HemoPI2 screening, and tsAMP-CS/LLAMP ranking. The default run generates
 
 ## Status
 
-The completed Colab run's sequence files are in `results/reference_run/`.
-They passed an independent archive audit. This packaged command has not yet
-completed a fresh model-inference run or the full repository validator.
-See `records/packaging_validation.json` for checks actually performed.
+The audited original run's sequence files are in `results/reference_run/`.
+On 2026-09-28, the packaged pipeline completed a fresh generation and scoring run
+on a Colab Tesla T4. Both exported FASTA SHA-256 hashes exactly matched the audited
+reference files, and the organizers' sequence-check functions passed on the new
+outputs. Evidence is the submitter-provided execution logs and check output.
+
+A second invocation using existing checkpoints was not tested before the Colab
+runtime was lost. The full official repository validator has not been run end to
+end; installation, generation, and sequence checks were exercised separately.
+See `records/reproduction_validation_2026-09-28.json` for the tested commit and
+scope, and `SUBMISSION_REVIEW.md` for remaining submission questions.
 
 ## Colab setup
 
@@ -50,6 +57,7 @@ used a Tesla T4 GPU and Python 3.13.15. Model downloads require network access;
 CPU fallback exists in the source but its full-run duration is unverified.
 
 ```bash
+uv sync
 uv run generate
 ```
 
@@ -79,7 +87,7 @@ This invokes the organizers' sequence-check functions. For newly generated files
 use `uv run check-files --directory generate`. These checks do not establish
 installation reproducibility, scientific performance, or licensing eligibility.
 
-Once the repository is uploaded, run the unchanged official validator:
+The unchanged official validator is available for end-to-end verification:
 
 ```bash
 uv run python scripts/verify_submission.py <github-url>
