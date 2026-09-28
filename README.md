@@ -11,6 +11,38 @@ They passed an independent archive audit. This packaged command has not yet
 completed a fresh model-inference run or the full repository validator.
 See `records/packaging_validation.json` for checks actually performed.
 
+## Colab setup
+
+In a fresh Colab notebook, select a GPU runtime and run `!nvidia-smi` to
+confirm that a GPU is connected. Then run this setup cell:
+
+```python
+import subprocess
+import sys
+
+commands = [
+    [sys.executable, "-m", "pip", "install", "-q", "uv"],
+    ["apt-get", "update", "-qq"],
+    ["apt-get", "install", "-y", "-qq", "git-lfs"],
+    ["uv", "--version"],
+    ["git", "--version"],
+    ["git", "lfs", "version"],
+]
+
+for command in commands:
+    subprocess.run(command, check=True)
+```
+
+This cell prepares Colab's system tools; it does not run model inference.
+The `apt-get` commands are specific to Colab's Debian/Ubuntu-based environment,
+not a universal installation procedure. Project Python dependencies are managed
+separately by the three committed lock files.
+
+Before running the project, clone the repository and use its root directory.
+A private repository requires GitHub authentication in the Colab runtime.
+Repeat this setup when using a new runtime. Files on Colab's temporary disk,
+including checkpoints, are not durable backups.
+
 ## Run
 
 Use Linux x86_64 with `uv`, `git`, and `git-lfs`. The successful source run
