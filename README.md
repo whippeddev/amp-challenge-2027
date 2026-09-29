@@ -98,11 +98,19 @@ FASTA files against `data/antibacterial.fasta`, and invokes generation again to
 compare both files byte-for-byte. A repeat with warm checkpoints is not an
 independent cold-start rerun; a separate fresh work directory can test that too.
 
+## Submission
+
+The minimum-benchmark submission write-up is in [SUBMISSION.md](SUBMISSION.md).
+The final abstract is in [ABSTRACT.md](ABSTRACT.md). The sequence files remain in
+`results/reference_run/`. These prepared materials are not evidence of a completed
+Kaggle submission. Co-authorship eligibility is not claimed.
+
 ## Documentation
 
 - `METHODS.md`: implemented selection procedure and limitations.
 - `DATA_AND_MODELS.md`: component sources and data-disclosure gaps.
-- `ABSTRACT_DRAFT.md`: draft method summary for review.
+- `ABSTRACT.md`: final method summary.
+- `ABSTRACT_DRAFT.md`: retained earlier draft.
 - `PACKAGING_CHANGES.md`: notebook-to-command changes.
 - `THIRD_PARTY.md`: scope of bundled and downloaded components.
 - `records/`: original run records, audit, and packaging validation.
