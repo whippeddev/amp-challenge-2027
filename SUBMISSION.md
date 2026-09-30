@@ -37,10 +37,10 @@ Earlier development included AMP-Diffusion experiments, OmegAMP benchmark compar
 
 Predicted activity and hemolysis still need experimental testing. LLAMP's nine target estimates cover six species, with one estimate reused for three E. coli targets and another for two Salmonella targets. Absolute MIC calibration is uncertain. The tsAMP-CS inference network was reconstructed to load the released checkpoints, but exact agreement with the authors' implementation has not been established.
 
-## Code and verification
+## Code and reproducibility
 
-Repository and run instructions. Model weights are downloaded from upstream sources at runtime rather than bundled in the repository.
+Repository and run instructions are available in the README. Model weights are downloaded from upstream sources at runtime rather than bundled in the repository.
 
-A fresh packaged run on a Colab Tesla T4 on September 28, 2026 produced library and top-100 FASTA files with hashes matching the original run. The organizers' sequence-check functions passed.
+A fresh packaged run on a Colab Tesla T4 on September 28, 2026 produced library and top-100 FASTA files with hashes matching the original run.
 
 THIRD_PARTY.md documents third-party licenses.
