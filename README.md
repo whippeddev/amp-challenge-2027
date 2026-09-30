@@ -87,12 +87,10 @@ See [METHODS.md](METHODS.md) for thresholds, counts, tie-breaking, and limitatio
 No model was trained or fine-tuned in this pipeline. Activity and hemolysis are
 predictions; the selected peptides have not been experimentally tested.
 
-## Verification
+## Reproducibility
 
 A fresh packaged run on September 28, 2026 produced both FASTA files with hashes
-matching the original run. The organizers' sequence-check functions passed on
-the newly generated files.
-Details are in [the validation record](records/reproduction_validation_2026-09-28.json).
+matching the original run.
 
 Check the stored reference files:
 
@@ -106,23 +104,13 @@ Check newly generated files:
 uv run check-files --directory generate
 ```
 
-The unchanged official validator is also included:
-
-```bash
-uv run python scripts/verify_submission.py https://github.com/whippeddev/amp-challenge-2027
-```
-
-It clones the repository, installs dependencies, generates and checks the files,
-then runs generation again to compare outputs. The pipeline can reuse checkpoints;
-a fresh work directory is needed for an independent calculation.
-
 ## Documentation and licenses
 
 - [METHODS.md](METHODS.md): generation, selection, results, and limitations.
 - [DATA_AND_MODELS.md](DATA_AND_MODELS.md): model and data sources.
 - [THIRD_PARTY.md](THIRD_PARTY.md): third-party component licenses.
 - [PACKAGING_CHANGES.md](PACKAGING_CHANGES.md): conversion from Colab to the CLI.
-- `records/`: saved run and validation records.
+- `records/`: saved run and provenance records.
 
 Original integration code and documentation use the MIT license. Upstream code,
 weights, and data retain their own terms. Historical run records are preserved;
