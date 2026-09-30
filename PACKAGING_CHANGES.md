@@ -23,7 +23,7 @@ Changes made for packaging:
 Generation parameters, filter thresholds, model forward passes, scoring weights,
 ranking keys, and similarity thresholds were preserved. The preceding v14 edit
 also corrected stale completion status and scoring descriptions, recorded output
-hashes, and separated historical statements from submitter-confirmed declarations.
+hashes, and separated historical statements from my declarations.
 
 Original Colab environments are recorded under `records/original_*_packages.txt`.
 Package locks are generated for the portable environments. A fresh packaged run

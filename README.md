@@ -10,7 +10,7 @@ The audited original run's sequence files are in `results/reference_run/`.
 On 2026-09-28, the packaged pipeline completed a fresh generation and scoring run
 on a Colab Tesla T4. Both exported FASTA SHA-256 hashes exactly matched the audited
 reference files, and the organizers' sequence-check functions passed on the new
-outputs. Evidence is the submitter-provided execution logs and check output.
+outputs. These results are recorded in my execution logs and check output.
 
 A second invocation using existing checkpoints was not tested before the Colab
 runtime was lost. The full official repository validator has not been run end to
@@ -117,4 +117,4 @@ Kaggle submission. Co-authorship eligibility is not claimed.
 
 The original records are retained verbatim and include superseded descriptions
 of early scoring weights. `METHODS.md` and `PACKAGING_CHANGES.md` identify those
-corrections. No submitter declaration is inferred from the automated checks.
+corrections. My account of the development process is separate from the automated checks.

@@ -47,7 +47,7 @@ minimum-participation eligibility must not be assumed.
 [GPLv3 is OSI-approved](https://opensource.org/license/gpl-3.0) and permits commercial
 use, but is not permissive. Ask the organizers whether their separate full-track
 permissive-license requirement extends to separately installed GPL tools such as
-HemoPI2, or only the submitter's original code.
+HemoPI2, or only this project's original code.
 
 The immediate actions are:
 1. Obtain organizer clarification on LLAMP's use for scoring under section 6(c),

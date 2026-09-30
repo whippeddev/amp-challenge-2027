@@ -60,16 +60,18 @@ Prior LLAMP external testing reported weak absolute calibration and uneven
 species performance. Neither model's validation guarantees performance for
 these newly generated candidates.
 
-The software path is automated. Absence of outside manual edits, discarded runs,
-or seed searches requires a factual submitter declaration; the package does not
-automatically certify those historical facts. No model was retrained by the
-packaged generation path.
+The software path is automated. I did not personally hand-edit or select individual
+sequences, add outside sequences, or choose the best result among alternative full
+runs or random seeds. I chose models and filter settings during development and
+used the planned settings for the completed run. These statements describe my
+process; automated checks alone cannot establish that history. I did not retrain
+any model in the packaged generation path.
 
 # Packaged-run verification
 
 On 2026-09-28, commit `6dc67d47e3074838136bad7d168871de4f4e8644`
 completed generation and scoring on a Colab Tesla T4 with no completed stage
-checkpoints at generation startup. Submitter-provided output shows that both
+checkpoints at generation startup. My run output shows that both
 exported FASTA hashes exactly matched the audited source-run files. Official
 sequence-check functions passed on these newly generated files. The complete
 validator and its same-directory repeat-invocation check were not completed.

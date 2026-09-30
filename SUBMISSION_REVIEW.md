@@ -10,15 +10,14 @@
 - The Top 100 reference and pairwise Levenshtein limits are ≤0.80.
 - Activity and hemolysis are predictions. LLAMP's species estimates repeated across strain targets are not independent strain predictions.
 
-## Submitter-confirmed declaration — 2026-09-28
+## My declaration — 2026-09-28
 
-The submitter confirmed that they did not personally hand-pick, edit, delete, or
-reorder individual peptide sequences, or manually add outside sequences. This is
-a submitter declaration, not a conclusion established by the automated audit.
-Choosing models and filter settings was explicitly excluded from this question.
-The submitter separately confirmed that the completed run used the planned
-settings rather than choosing the best predictions among alternative full runs
-or random seeds. This does not imply there were no earlier development tests.
+I did not personally hand-pick, edit, delete, or reorder individual peptide
+sequences, or manually add outside sequences. I chose the models and filter
+settings during development. The completed run used the planned settings; I did
+not choose the best predictions among alternative full runs or random seeds.
+I did run earlier development tests. These statements describe my process and
+are separate from the automated audit.
 
 ## Unresolved before final declarations
 
@@ -33,6 +32,6 @@ or random seeds. This does not imply there were no earlier development tests.
 
 ## Corrections made in this review
 
-README, packaging notes, and current validation metadata now reflect the successful packaged run. Original historical records remain unchanged. Run evidence is attributed to submitter-provided output rather than represented as an independent execution by the reviewer.
+README, packaging notes, and current validation metadata now reflect the successful packaged run. Original historical records remain unchanged. Run evidence comes from my execution logs and check output; the documentation review was not an independent rerun.
 
 The abstract remains a draft. No model, weight, filter, ranking rule, or output sequence was changed in this review. Nothing has been submitted to the competition.
