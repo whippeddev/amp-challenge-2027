@@ -5,5 +5,7 @@
   "archive_sha256": "b21aebb36ca63316896dbe7e8a7eba7383f8188203ab3e1b9162dfd97898d5ca",
   "full_inference_run_of_packaged_code": true,
   "packaged_run_completed": "2026-09-28",
-  "validation_record": "records/reproduction_validation_2026-09-28.json"
+  "validation_record": "records/reproduction_validation_2026-09-28.json",
+  "repository_notebook_sha256": "5c1d080cbfa69de57030dcb3e989ee47bae1f22a6b8a8d678dd142de7b71edaf",
+  "repository_notebook_changes": "Component license metadata synchronized with THIRD_PARTY.md."
 }
