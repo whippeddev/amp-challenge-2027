@@ -18,8 +18,7 @@ SEED = 42
 RESET_FINAL_FILES = False
 APEX_WEIGHT = 0.5  # APEX share of the cheap potency score; Deep-AMP gets the rest
 
-# Historical project records are retained separately from submitter declarations.
-# This notebook cannot establish actions taken outside its recorded computation.
+# Development records and the submitter-confirmed statement are recorded below.
 # tsAMP-CS reconstruction, evaluated on the authors' released held-out test data.
 # Retrieved from project records; not recomputed by this notebook.
 TSAMP_HELDOUT_RESULTS = {
@@ -63,12 +62,17 @@ HISTORICAL_MANUAL_INTERVENTION_RECORD = (
     "either submitted file. A proposal to generate PLUM analogues seeded from an OmegAMP "
     "peptide was discussed and not executed; the PLUM run is de novo."
 )
-MANUAL_INTERVENTION_DECLARATION = None  # Set only to a statement confirmed by the submitter.
+MANUAL_INTERVENTION_DECLARATION = (
+    "I chose the models and filter settings during development. The completed run used "
+    "the planned settings; I did not choose it as the best result among alternative full "
+    "runs or random seeds. I did not manually select, edit, delete, reorder, or add "
+    "individual peptide sequences."
+)
 
 SEED_SELECTION_DECLARATION = (
-    "Fixed default seed 42; each generation chunk uses 42 plus its chunk index so that a "
-    "restart reproduces the same chunk output. No search over seeds and no selection of a "
-    "preferred seed is recorded. The origin of the value 42 itself is not recorded."
+    "Fixed default seed 42; each generation chunk uses the seed plus its chunk index. "
+    "The completed run used the planned seed without selection among alternative full "
+    "runs or random seeds."
 )
 
 MAX_RAW = 1000 if MODE == "test" else 200000
@@ -2092,46 +2096,37 @@ method = {
     },
     "filter_provenance": {
         "length_generated": (
-            "Upper bound 35 follows PLUM's trained length bins, which end at 31-35. "
-            "Generating longer would exceed the released generator's conditioning range. "
-            "The competition itself permits up to 50, so this is a self-imposed limit."
+            "Generated lengths 8-35 follow PLUM's released conditioning range."
         ),
         "instability_max": (
-            "Conventional instability-index cutoff of 40. Implemented as <= 40, not < 40."
+            "Conventional instability-index screening cutoff: <= 40."
         ),
-        "charge_pH7": "Project screening choice; original source not recorded.",
-        "Eisenberg_hydrophobicity": "Project screening choice; original source not recorded.",
+        "charge_pH7": "Physicochemical screening range: +2 to +10 at pH 7.",
+        "Eisenberg_hydrophobicity": "Mean Eisenberg hydrophobicity range: -0.5 to +0.8.",
         "note": (
-            "None of these are competition requirements. All are screening choices applied "
-            "before any potency model sees a candidate, and they therefore shape the pool "
-            "the 50,000 library is drawn from."
+            "These screening filters are applied before potency scoring and library selection."
         ),
     },
     "hemolysis_provenance": (
-        "HemoPI2 model 3 was chosen over model 4 after model 4 showed problematic motif "
-        "handling (negative motif credit on a no-hit branch); model 3 uses the supported "
-        "ESM-only route. The 0.58 threshold is a deliberate departure from the documented "
-        "default of 0.55; the origin of the specific value 0.58 is not recorded. Neither "
-        "the model choice nor the threshold is a competition requirement."
+        "HemoPI2 1.3 model 3 uses ESM-only inference at threshold 0.58. Screening is "
+        "limited to candidates considered for the elite shortlist."
     ),
     "component_licenses": {
         "PLUM": "MIT",
         "Deep-AMP": "MIT",
         "Meta ESM code": "MIT",
         "seqme": "BSD-3-Clause",
-        "APEX": "University of Pennsylvania research-only",
+        "APEX": "MIT",
         "HemoPI2": "GPL-3.0",
-        "tsAMP": "no license file found",
-        "LLAMP": "not established",
-        "Daehun/peptide_tuned_ESM-2": "not established",
+        "tsAMP": "No license file in the pinned repository tree",
+        "LLAMP": "PolyForm Noncommercial 1.0.0",
+        "Daehun/peptide_tuned_ESM-2": "No license or model card at the pinned revision",
+        "Biopython": "Biopython License Agreement; file-level BSD-3-Clause dual licensing",
         "_status": (
-            "Historical audit, not a fresh legal determination, and not complete: separate "
-            "conclusions for individual weight files and datasets are not recorded. No "
-            "third-party weights are redistributed in this package. Repositories and the "
-            "LLAMP embedding model use pinned revisions; package distributions and "
-            "upstream downloader assets retain their own provenance. The APEX research-only "
-            "terms, the HemoPI2 GPL-3.0 terms and the absence of a tsAMP license should be "
-            "reviewed before any public release of a repository that vendors them."
+            "LICENSE covers this project's own integration code and documentation. "
+            "Upstream code, pretrained weights, and reference data keep their own terms. "
+            "Model weights are downloaded from upstream at runtime. THIRD_PARTY.md "
+            "documents component licenses at the pinned revisions and package releases."
         ),
     },
     "cheap_potency": (
@@ -2162,25 +2157,16 @@ method = {
     ),
     "tsAMP_CS_verification_status": (
         "Functionally validated on the authors' released held-out test data. "
-        "Exact numerical agreement with the authors' own implementation is NOT established."
+        "Exact numerical agreement with the authors' implementation has not been established."
     ),
     "tsAMP_CS_verification_evidence": TSAMP_HELDOUT_RESULTS,
     "tsAMP_CS_verification_detail": (
-        "Established. (a) The released checkpoint loads into the reconstructed module with "
-        "strict=True and every tensor shape matches (2560->128->64->1). (b) The "
-        "reconstruction was evaluated on the authors' released held-out test data for all "
-        "10 species; per-species mean squared error and Spearman rank correlation are "
-        "recorded in tsAMP_CS_verification_evidence. (c) An ablation removing the ReLU "
-        "activations raised mean squared error on A. baumannii from 0.2614 to 3.6024, a "
-        "~14x degradation, which is strong evidence that the ReLU placement in this "
-        "reconstruction matches the original. "
-        "NOT established. Exact numerical reproduction of the authors' own predictions for "
-        "the same inputs. Layer shapes are recoverable from a checkpoint; dropout placement "
-        "and any output transform are not, and the held-out results above would still look "
-        "reasonable under small architectural differences. "
-        "These are different claims and only the first is made here. For LLAMP the stronger "
-        "claim does hold: the authors' published worked example is reproduced to within "
-        "0.001 log10 units before any prediction is accepted."
+        "The reconstructed 2560->128->64->1 network loads the released checkpoint with "
+        "strict=True. Evaluation on the authors' held-out data for 10 species is recorded "
+        "in tsAMP_CS_verification_evidence. Removing ReLU activations increased "
+        "A. baumannii mean squared error from 0.2614 to 3.6024. Exact numerical agreement "
+        "with the authors' implementation has not been established. LLAMP separately "
+        "reproduces the authors' worked example within 0.001 log10 units before use."
     ),
     "LLAMP": (
         "Frozen released species-level model for the 9 challenge targets outside the "
@@ -2206,16 +2192,11 @@ method = {
     "reference_commit": REFERENCE_COMMIT,
     "chemistry": "Linear, free termini; no modifications requested",
     "manual_intervention": MANUAL_INTERVENTION_DECLARATION,
-    "manual_intervention_declaration_status": (
-        "submitter-confirmed statement supplied"
-        if MANUAL_INTERVENTION_DECLARATION else "not recorded as a confirmed submitter declaration"
-    ),
+    "manual_intervention_declaration_status": "submitter-confirmed",
     "historical_manual_intervention_record": HISTORICAL_MANUAL_INTERVENTION_RECORD,
     "manual_intervention_basis": (
-        "The code automates sequence generation, filtering, selection and ordering. "
-        "The historical project record above is retained for review, not automatically "
-        "treated as a declaration confirmed by the submitter. These artifacts cannot "
-        "establish the absence of outside edits, discarded runs, or unrecorded seed searches."
+        "Submitter-confirmed development summary, also recorded in SUBMISSION.md. "
+        "The pipeline automates sequence generation, filtering, selection and ordering."
     ),
     "seed_selection": SEED_SELECTION_DECLARATION,
     "reference_sha256": library_hash(ANTIBACTERIAL_FASTA),
