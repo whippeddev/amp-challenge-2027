@@ -34,8 +34,3 @@ intermediate numerical score. See `records/reproduction_validation_2026-09-28.js
 The CLI now selects the non-interactive Matplotlib Agg backend before loading the
 pipeline. This fixes a Colab-inherited notebook backend error without changing
 sequence generation, model scoring, or selection.
-
-The historical source records are not rewritten. In particular,
-`original_method_and_versions.json` contains stale equal-third scoring wording
-and an earlier manual-intervention statement. The executed weighting is
-50%/25%/25%; the current development summary is in SUBMISSION.md.
