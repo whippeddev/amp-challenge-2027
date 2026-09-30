@@ -21,7 +21,7 @@ data and overlap have not been independently verified. License findings are in
 Repository commits, checkpoint hashes, and model download locations are recorded
 in `records/model_sources.json` and in the executable setup. Model weights are fetched from their upstream sources at run time.
 
-Earlier project records also describe AMP-Diffusion generation experiments,
+Earlier project records also include AMP-Diffusion generation experiments,
 OmegAMP benchmark peptides, a 46-peptide AMP-Diffusion experimental benchmark,
 and exploratory BattleAMP web results. These are not sequence inputs to this
 packaged generator. The Deep-AMP repository's name contains BattleAMP; that is
