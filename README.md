@@ -123,7 +123,6 @@ a fresh work directory is needed for an independent calculation.
 - [DATA_AND_MODELS.md](DATA_AND_MODELS.md): model and data sources.
 - [THIRD_PARTY.md](THIRD_PARTY.md): upstream licenses and unresolved terms.
 - [PACKAGING_CHANGES.md](PACKAGING_CHANGES.md): conversion from Colab to the CLI.
-- [SUBMISSION_REVIEW.md](SUBMISSION_REVIEW.md): submission and verification summary.
 - `records/`: saved run and validation records.
 
 Original integration code and documentation use the MIT license. Upstream code,
