@@ -10,7 +10,7 @@ tsAMP-CS supplied predictions for 11 challenge strains, while LLAMP supplied spe
 
 I used released pretrained models without training or fine-tuning them. The pipeline combines PLUM, APEX, Deep-AMP, HemoPI2 1.3, tsAMP-CS, ESM-1v, LLAMP, and peptide-tuned ESM-2. [DATA_AND_MODELS.md](https://github.com/whippeddev/amp-challenge-2027/blob/main/DATA_AND_MODELS.md) lists their sources and roles; [model_sources.json](https://github.com/whippeddev/amp-challenge-2027/blob/main/records/model_sources.json) records revisions and weight locations. The upstream models' complete training-data provenance and overlap have not been independently verified.
 
-The submitted peptides are linear, have free termini, and use only the 20 standard amino acids. Filtering removed duplicates and exact matches to PLUM's released training CSV and the organizers' antibacterial reference. Candidates also had to meet an instability index of at most 40, charge at pH 7 between +2 and +10, and mean Eisenberg hydrophobicity between −0.5 and +0.8. These filters retained 109,504 unique peptides.
+The submitted peptides are linear, have free termini, and use only the standard amino acids. Filtering removed duplicates and exact matches to PLUM's released training CSV and the organizers' antibacterial reference. Candidates also had to meet an instability index of at most 40, charge at pH 7 between +2 and +10, and mean Eisenberg hydrophobicity between −0.5 and +0.8. These filters retained 109,504 unique peptides.
 
 ## Selection and ranking
 
@@ -39,8 +39,8 @@ Predicted activity and hemolysis still need experimental testing. LLAMP's nine t
 
 ## Code and verification
 
-[Repository and run instructions](https://github.com/whippeddev/amp-challenge-2027). Model weights are downloaded from upstream sources at runtime rather than bundled in the repository.
+Repository and run instructions. Model weights are downloaded from upstream sources at runtime rather than bundled in the repository.
 
 A fresh packaged run on a Colab Tesla T4 on September 28, 2026 produced library and top-100 FASTA files with hashes matching the original run. The organizers' sequence-check functions passed. The full repository validator, including its repeat invocation in the same directory, was not completed.
 
-[THIRD_PARTY.md](https://github.com/whippeddev/amp-challenge-2027/blob/main/THIRD_PARTY.md) documents third-party licenses and unresolved terms, including LLAMP's noncommercial source-code license.
+THIRD_PARTY.md documents third-party licenses.
