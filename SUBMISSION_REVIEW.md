@@ -1,37 +1,42 @@
-# Submission document review — 2026-09-28
+# Submission summary
 
-## Confirmed from code, saved records, and supplied run output
+## Current status
 
-- Public repository contains a defined generation entry point, three dependency locks, reference outputs, methods, and a draft abstract.
-- Packaged generation at commit `6dc67d47e3074838136bad7d168871de4f4e8644` completed; both output hashes match the audited original run.
-- Newly generated files passed the official sequence-check functions.
-- Abstract and methods agree on 200,000 generated candidates, 109,504 filter survivors, a 50,000-member library, 8,500 screened for hemolysis, 2,093 predicted non-hemolytic candidates, and a 2,000-candidate elite panel.
-- Early weights are 50% APEX and 25% each Deep-AMP Gram-negative and Gram-positive. Final ranking uses total passes, tsAMP-CS passes, mean predicted log10 MIC, then alphabetical sequence order.
-- The Top 100 reference and pairwise Levenshtein limits are ≤0.80.
-- Activity and hemolysis are predictions. LLAMP's species estimates repeated across strain targets are not independent strain predictions.
+The [Kaggle write-up](https://www.kaggle.com/competitions/amp-challenge/writeups/plum-generation-with-staged-antimicrobial-peptide) is submitted, with
+`library.fasta` and `top.fasta` attached and this repository linked.
+The final write-up is in [SUBMISSION.md](SUBMISSION.md).
 
-## My declaration — 2026-09-28
+## Completed checks
 
-I did not personally hand-pick, edit, delete, or reorder individual peptide
-sequences, or manually add outside sequences. I chose the models and filter
-settings during development. The completed run used the planned settings; I did
-not choose the best predictions among alternative full runs or random seeds.
-I did run earlier development tests. These statements describe my process and
-are separate from the automated audit.
+- The packaged run at commit `6dc67d47e3074838136bad7d168871de4f4e8644`
+  completed on September 28, 2026. Both exported FASTA hashes matched the original run.
+- Newly generated files passed the organizers' sequence-check functions.
+- The run produced 200,000 candidates, 109,504 filter survivors, a 50,000-member
+  library, and 100 ranked selections.
+- HemoPI2 screened 8,500 peptides, identified 2,093 as predicted non-hemolytic,
+  and the first 2,000 by library ranking advanced to final scoring.
+- Current documentation uses the executed 50%/25%/25% early scoring weights.
+  Final ranking uses total predicted passes, tsAMP-CS passes, mean predicted
+  log10 MIC, and alphabetical sequence order.
+- Top-100 reference and pairwise Levenshtein limits are ≤0.80.
 
-## Unresolved before final declarations
+## Development process
 
-| Item | Current evidence and remaining action |
-|---|---|
-| Historical experiments | Earlier records mention AMP-Diffusion, OmegAMP benchmark peptides, and BattleAMP website exploration. Complete the factual history and distinguish experiments from inputs to the final pipeline. |
-| Upstream training data | A final source inventory exists, but complete training-data provenance, availability, overlaps, and any non-public data remain to be reviewed. |
-| Upstream licenses | Project MIT licensing does not establish permission for every upstream codebase, weight file, or dataset. Full review remains open; permissive-release/co-authorship eligibility is not established. |
-| Weight access | Weights download from upstream sources and were accessible in the completed run. They are not bundled in this repository. Confirm that this delivery method meets the organizers' model-weight requirement. |
-| Repeat-run validation | Existing-checkpoint repeat was not tested after runtime loss. Full official validator remains unrun. Record this limitation; do not claim it passed. |
-| Submission fields | Confirm current Kaggle file naming/format, document fields and limits, authorship details, and final uploads before submitting. |
+I chose the models and filter settings during development and used the planned
+settings for the completed run. I did not manually select, edit, delete, reorder,
+or add individual peptide sequences, or choose the best result among alternative
+full runs or random seeds. Earlier development tests are described in SUBMISSION.md.
 
-## Corrections made in this review
+## Remaining limitations
 
-README, packaging notes, and current validation metadata now reflect the successful packaged run. Original historical records remain unchanged. Run evidence comes from my execution logs and check output; the documentation review was not an independent rerun.
+The full official repository validator and its same-directory repeat invocation
+were not completed. Activity and hemolysis remain predictions, and LLAMP's repeated
+species estimates are not independent strain predictions. Scientific limitations
+are described in METHODS.md; unresolved upstream terms are recorded in THIRD_PARTY.md.
 
-The abstract remains a draft. No model, weight, filter, ranking rule, or output sequence was changed in this review. Nothing has been submitted to the competition.
+Model weights download from upstream at runtime and are not bundled. Organizer
+acceptance of this delivery method and complete upstream training-data provenance
+have not been established.
+
+This summary replaces the pre-submission checklist. Original run records remain
+in `records/`.

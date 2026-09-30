@@ -1,27 +1,51 @@
 # AMP Challenge 2027 submission
 
-PLUM generation, physicochemical filtering, APEX/Deep-AMP library selection,
-HemoPI2 screening, and tsAMP-CS/LLAMP ranking. The default run generates
-200,000 raw candidates and writes a 50,000-member library and ranked Top 100.
+An automated pipeline for generating and selecting antimicrobial peptides with
+pretrained models. PLUM generates 200,000 candidates; sequence and physicochemical
+filters, APEX/Deep-AMP scoring, HemoPI2 screening, and tsAMP-CS/LLAMP ranking produce
+a library of 50,000 peptides and a ranked top 100.
 
-## Status
+## Submission
 
-The audited original run's sequence files are in `results/reference_run/`.
-On 2026-09-28, the packaged pipeline completed a fresh generation and scoring run
-on a Colab Tesla T4. Both exported FASTA SHA-256 hashes exactly matched the audited
-reference files, and the organizers' sequence-check functions passed on the new
-outputs. These results are recorded in my execution logs and check output.
+[Submitted on Kaggle](https://www.kaggle.com/competitions/amp-challenge/writeups/plum-generation-with-staged-antimicrobial-peptide) with both FASTA files attached.
+The submitted sequences are also available here:
 
-A second invocation using existing checkpoints was not tested before the Colab
-runtime was lost. The full official repository validator has not been run end to
-end; installation, generation, and sequence checks were exercised separately.
-See `records/reproduction_validation_2026-09-28.json` for the tested commit and
-scope, and `SUBMISSION_REVIEW.md` for remaining submission questions.
+- [library.fasta](results/reference_run/library.fasta): 50,000 peptides.
+- [top.fasta](results/reference_run/top.fasta): 100 candidates in rank order.
+- [Submission write-up](SUBMISSION.md) and [abstract](ABSTRACT.md).
+
+## Run
+
+Use Linux x86_64 with `uv`, `git`, and `git-lfs` installed. The packaged pipeline
+was tested on a Colab Tesla T4. Network access is required for model downloads.
+CPU fallback is available, but a complete CPU run has not been timed.
+
+```bash
+git clone https://github.com/whippeddev/amp-challenge-2027.git
+cd amp-challenge-2027
+uv sync
+uv run generate
+```
+
+Outputs are written to `generate/library.fasta` and `generate/top.fasta`.
+Defaults are seed 42, 200,000 raw candidates, 50,000 library members, 2,000
+candidates for final activity scoring, and 100 selected peptides.
+
+Checkpoints are stored under `.amp-work/full-run1/`; downloaded models and
+auxiliary environments are stored under `.amp-tools/`. Repeating the command
+resumes matching checkpoints. For a fresh calculation, use:
+
+```bash
+uv run generate --work-dir .amp-work/independent-run
+```
+
+Three committed lock files cover the main, Deep-AMP, and HemoPI2 environments.
+Auxiliary environments are installed automatically. Weight sources and pinned
+revisions are listed in [model_sources.json](records/model_sources.json).
 
 ## Colab setup
 
-In a fresh Colab notebook, select a GPU runtime and run `!nvidia-smi` to
-confirm that a GPU is connected. Then run this setup cell:
+Select a GPU runtime. In a fresh notebook, install the system tools:
 
 ```python
 import subprocess
@@ -31,90 +55,77 @@ commands = [
     [sys.executable, "-m", "pip", "install", "-q", "uv"],
     ["apt-get", "update", "-qq"],
     ["apt-get", "install", "-y", "-qq", "git-lfs"],
-    ["uv", "--version"],
-    ["git", "--version"],
-    ["git", "lfs", "version"],
 ]
-
 for command in commands:
     subprocess.run(command, check=True)
 ```
 
-This cell prepares Colab's system tools; it does not run model inference.
-The `apt-get` commands are specific to Colab's Debian/Ubuntu-based environment,
-not a universal installation procedure. Project Python dependencies are managed
-separately by the three committed lock files.
+Then clone and run the project in a separate cell:
 
-Before running the project, clone the repository and use its root directory.
-A private repository requires GitHub authentication in the Colab runtime.
-Repeat this setup when using a new runtime. Files on Colab's temporary disk,
-including checkpoints, are not durable backups.
-
-## Run
-
-Use Linux x86_64 with `uv`, `git`, and `git-lfs`. The successful source run
-used a Tesla T4 GPU and Python 3.13.15. Model downloads require network access;
-CPU fallback exists in the source but its full-run duration is unverified.
-
-```bash
-uv sync
-uv run generate
+```python
+!git clone https://github.com/whippeddev/amp-challenge-2027.git
+%cd amp-challenge-2027
+!uv sync
+!uv run generate
 ```
 
-Outputs: `generate/library.fasta`, `generate/top.fasta`, plus method/check records.
-Defaults: seed 42, 200,000 raw candidates, 50,000 library members, 2,000 elite
-candidates, and 100 final selections. This command runs generation and inference;
-it never copies the reference results as a substitute for model execution.
+Save the generated files before ending the Colab session; its temporary disk is
+cleared when the runtime is lost. The original notebook is in `notebooks/`.
 
-Checkpoints persist under `.amp-work/full-run1/`; models and auxiliary environments
-persist under `.amp-tools/`. Repeating the command resumes matching checkpoints.
-Use `--work-dir .amp-work/independent-run` for a fresh calculation. All arguments
-have defaults. `--output-dir` and `--tools-dir` can also be set explicitly.
+## Method
 
-Three `uv.lock` files pin the main, Deep-AMP, and HemoPI2 environments. Auxiliary
-environments are installed automatically into the tools directory. The source
-notebook remains in `notebooks/` as the Colab workflow.
+1. Generate with PLUM and filter for sequence validity, duplicates, reference
+   matches, and physicochemical properties.
+2. Select the library using 50% APEX, 25% Deep-AMP Gram-negative, and 25%
+   Deep-AMP Gram-positive percentile scores.
+3. Screen candidates in library order with HemoPI2 and retain the first 2,000
+   predicted non-hemolytic peptides for final scoring.
+4. Rank by predicted activity across the combined tsAMP-CS/LLAMP panel, then
+   apply reference and pairwise similarity limits to select 100 peptides.
 
-## Validate
+See [METHODS.md](METHODS.md) for thresholds, counts, tie-breaking, and limitations.
+No model was trained or fine-tuned in this pipeline. Activity and hemolysis are
+predictions; the selected peptides have not been experimentally tested.
 
-Validate the existing reference FASTA files without model inference:
+## Verification
+
+A fresh packaged run on September 28, 2026 produced both FASTA files with hashes
+matching the original run. The organizers' sequence-check functions passed on
+the newly generated files. The full official repository validator and its
+same-directory repeat invocation were not completed.
+Details are in [the validation record](records/reproduction_validation_2026-09-28.json).
+
+Check the stored reference files:
 
 ```bash
 uv run check-files
 ```
 
-This invokes the organizers' sequence-check functions. For newly generated files,
-use `uv run check-files --directory generate`. These checks do not establish
-installation reproducibility, scientific performance, or licensing eligibility.
-
-The unchanged official validator is available for end-to-end verification:
+Check newly generated files:
 
 ```bash
-uv run python scripts/verify_submission.py <github-url>
+uv run check-files --directory generate
 ```
 
-It clones into `submission/`, installs dependencies, runs generation, checks the
-FASTA files against `data/antibacterial.fasta`, and invokes generation again to
-compare both files byte-for-byte. A repeat with warm checkpoints is not an
-independent cold-start rerun; a separate fresh work directory can test that too.
+The unchanged official validator is also included:
 
-## Submission
+```bash
+uv run python scripts/verify_submission.py https://github.com/whippeddev/amp-challenge-2027
+```
 
-The minimum-benchmark submission write-up is in [SUBMISSION.md](SUBMISSION.md).
-The final abstract is in [ABSTRACT.md](ABSTRACT.md). The sequence files remain in
-`results/reference_run/`. These prepared materials are not evidence of a completed
-Kaggle submission. Co-authorship eligibility is not claimed.
+It clones the repository, installs dependencies, generates and checks the files,
+then runs generation again to compare outputs. The pipeline can reuse checkpoints;
+a fresh work directory is needed for an independent calculation.
 
-## Documentation
+## Documentation and licenses
 
-- `METHODS.md`: implemented selection procedure and limitations.
-- `DATA_AND_MODELS.md`: component sources and data-disclosure gaps.
-- `ABSTRACT.md`: final method summary.
-- `ABSTRACT_DRAFT.md`: retained earlier draft.
-- `PACKAGING_CHANGES.md`: notebook-to-command changes.
-- `THIRD_PARTY.md`: scope of bundled and downloaded components.
-- `records/`: original run records, audit, and packaging validation.
+- [METHODS.md](METHODS.md): generation, selection, results, and limitations.
+- [DATA_AND_MODELS.md](DATA_AND_MODELS.md): model and data sources.
+- [THIRD_PARTY.md](THIRD_PARTY.md): upstream licenses and unresolved terms.
+- [PACKAGING_CHANGES.md](PACKAGING_CHANGES.md): conversion from Colab to the CLI.
+- [SUBMISSION_REVIEW.md](SUBMISSION_REVIEW.md): submission and verification summary.
+- `records/`: saved run and validation records.
 
-The original records are retained verbatim and include superseded descriptions
-of early scoring weights. `METHODS.md` and `PACKAGING_CHANGES.md` identify those
-corrections. My account of the development process is separate from the automated checks.
+Original integration code and documentation use the MIT license. Upstream code,
+weights, and data retain their own terms. Historical run records are preserved;
+the current methods document corrects their earlier equal-third scoring description.

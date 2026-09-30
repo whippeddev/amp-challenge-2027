@@ -2,7 +2,8 @@
 
 The packaged path uses released weights; it contains no model training step.
 The following sources are used in the final pipeline. Complete upstream training
-data provenance and redistribution permissions are not established by this file.
+data and overlap have not been independently verified. License findings are in
+[THIRD_PARTY.md](THIRD_PARTY.md).
 
 | Component | Source | Use |
 |---|---|---|
@@ -18,14 +19,11 @@ data provenance and redistribution permissions are not established by this file.
 | Biopython and seqme | https://biopython.org/ ; https://pypi.org/project/seqme/ | Physicochemical descriptors |
 
 Repository commits, checkpoint hashes, and model download locations are recorded
-in `records/model_sources.json` and in the executable setup. A repository's
-code license does not by itself establish the license of every training dataset
-or weight file. Model weights are fetched from their upstream sources at run time.
+in `records/model_sources.json` and in the executable setup. Model weights are fetched from their upstream sources at run time.
 
 Earlier project records also describe AMP-Diffusion generation experiments,
 OmegAMP benchmark peptides, a 46-peptide AMP-Diffusion experimental benchmark,
 and exploratory BattleAMP web results. These are not sequence inputs to this
 packaged generator. The Deep-AMP repository's name contains BattleAMP; that is
-distinct from querying the BattleAMP web service. The complete historical
-inventory, upstream training-set overlaps, and any manual-intervention declaration
-still require the separate factual submission review.
+distinct from querying the BattleAMP web service. The development process and manual-intervention summary are in
+[SUBMISSION.md](SUBMISSION.md).

@@ -23,7 +23,7 @@ Changes made for packaging:
 Generation parameters, filter thresholds, model forward passes, scoring weights,
 ranking keys, and similarity thresholds were preserved. The preceding v14 edit
 also corrected stale completion status and scoring descriptions, recorded output
-hashes, and separated historical statements from my declarations.
+hashes, and clarified the development history.
 
 Original Colab environments are recorded under `records/original_*_packages.txt`.
 Package locks are generated for the portable environments. A fresh packaged run
@@ -37,5 +37,5 @@ sequence generation, model scoring, or selection.
 
 The historical source records are not rewritten. In particular,
 `original_method_and_versions.json` contains stale equal-third scoring wording
-and an unverified manual-intervention statement. The executed weighting is
-50%/25%/25%, and no historical declaration is certified by the artifact audit.
+and an earlier manual-intervention statement. The executed weighting is
+50%/25%/25%; the current development summary is in SUBMISSION.md.

@@ -32,31 +32,23 @@ training-data, or model-weight rights audit.
 Code-license findings do not independently establish the rights to every
 associated model weight or upstream training dataset.
 
-## Submission implications
+## Unresolved terms
 
-The pipeline imports LLAMP's upstream `utils/model.py` directly. Downloading it
-at runtime does not remove the license restriction. tsAMP inference uses the
-project's reconstructed network with upstream checkpoints and strain embeddings.
+The pipeline imports LLAMP's upstream `utils/model.py` directly. Its noncommercial
+license may conflict with [Kaggle rule 6(c)](https://www.kaggle.com/competitions/amp-challenge/rules),
+which calls for OSI-approved licenses without commercial-use restrictions for
+open-source code used to generate submissions, unless otherwise specified.
+Downloading the file at runtime does not change its license.
 
-The [competition's Kaggle rules, section 6(c)](https://www.kaggle.com/competitions/amp-challenge/rules)
-require OSI-approved licenses without commercial-use restrictions for open-source
-code used to generate submissions, unless otherwise specified. LLAMP's restriction
-therefore presents a concrete compatibility question for scoring and selection;
-minimum-participation eligibility must not be assumed.
+Separate permissions for LLAMP weights/data, tsAMP checkpoints and strain
+embeddings, and peptide-tuned ESM-2 remain unclear from the reviewed releases.
+tsAMP inference uses a reconstructed network with the upstream checkpoints and
+strain embeddings.
 
-[GPLv3 is OSI-approved](https://opensource.org/license/gpl-3.0) and permits commercial
-use, but is not permissive. Ask the organizers whether their separate full-track
-permissive-license requirement extends to separately installed GPL tools such as
-HemoPI2, or only this project's original code.
+HemoPI2's GPLv3 license permits commercial use and is OSI-approved, but is not
+permissive. The organizers have not clarified whether the additional permissive
+license requirement for co-authorship applies to separately installed tools.
 
-The immediate actions are:
-1. Obtain organizer clarification on LLAMP's use for scoring under section 6(c),
-   and on the scope of the full-track dependency-license requirement.
-2. Obtain upstream clarification of LLAMP weights and peptide-tuned ESM-2 terms,
-   and tsAMP checkpoint/embedding permissions. Organizer acceptance alone does
-   not grant rights held by upstream authors.
-3. Resolve the separate host questions about runtime weight downloads and
-   third-party pretrained-model training-data disclosure.
-
-No all-clear for participation, co-authorship, or redistribution is claimed.
-No pipeline or selection changes were made by this review.
+The review did not establish complete upstream training-data provenance or
+organizer acceptance of runtime weight downloads. These remain open questions;
+the component table records the terms found at the pinned releases.
