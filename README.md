@@ -121,7 +121,7 @@ a fresh work directory is needed for an independent calculation.
 
 - [METHODS.md](METHODS.md): generation, selection, results, and limitations.
 - [DATA_AND_MODELS.md](DATA_AND_MODELS.md): model and data sources.
-- [THIRD_PARTY.md](THIRD_PARTY.md): upstream licenses and unresolved terms.
+- [THIRD_PARTY.md](THIRD_PARTY.md): third-party component licenses.
 - [PACKAGING_CHANGES.md](PACKAGING_CHANGES.md): conversion from Colab to the CLI.
 - `records/`: saved run and validation records.
 

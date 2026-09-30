@@ -37,7 +37,6 @@
   "official_repository_validator_end_to_end": "not run; installation, generation and official sequence functions were exercised separately",
   "known_fix": "CLI sets MPLBACKEND=Agg before loading the pipeline; fixes inherited Colab notebook plotting backend.",
   "limitations": [
-    "No experimental antimicrobial activity or hemolysis validation.",
-    "No claim that this verifies third-party licensing, full training-data disclosure, or all historical manual-intervention declarations."
+    "No experimental antimicrobial activity or hemolysis validation."
   ]
 }
