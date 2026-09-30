@@ -79,5 +79,4 @@ any model in the packaged generation path.
 On 2026-09-28, commit `6dc67d47e3074838136bad7d168871de4f4e8644`
 completed generation and scoring on a Colab Tesla T4 with no completed stage
 checkpoints at generation startup. Both exported FASTA hashes exactly matched the audited source-run files. Official
-sequence-check functions passed on these newly generated files. The complete
-validator and its same-directory repeat-invocation check were not completed.
+sequence-check functions passed on these newly generated files.

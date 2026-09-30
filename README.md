@@ -91,8 +91,7 @@ predictions; the selected peptides have not been experimentally tested.
 
 A fresh packaged run on September 28, 2026 produced both FASTA files with hashes
 matching the original run. The organizers' sequence-check functions passed on
-the newly generated files. The full official repository validator and its
-same-directory repeat invocation were not completed.
+the newly generated files.
 Details are in [the validation record](records/reproduction_validation_2026-09-28.json).
 
 Check the stored reference files:

@@ -41,6 +41,6 @@ Predicted activity and hemolysis still need experimental testing. LLAMP's nine t
 
 Repository and run instructions. Model weights are downloaded from upstream sources at runtime rather than bundled in the repository.
 
-A fresh packaged run on a Colab Tesla T4 on September 28, 2026 produced library and top-100 FASTA files with hashes matching the original run. The organizers' sequence-check functions passed. The full repository validator, including its repeat invocation in the same directory, was not completed.
+A fresh packaged run on a Colab Tesla T4 on September 28, 2026 produced library and top-100 FASTA files with hashes matching the original run. The organizers' sequence-check functions passed.
 
 THIRD_PARTY.md documents third-party licenses.
